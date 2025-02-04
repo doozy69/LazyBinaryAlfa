@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="icons_and_manifest">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/img/icons/extension/icons_and_manifest.zip!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

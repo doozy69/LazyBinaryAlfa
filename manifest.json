@@ -1,0 +1,60 @@
+{
+  "name": "DZ binary alfa",
+  "version": "5.2.1",
+  "manifest_version": 3,
+
+  "icons": {
+    "48": "img/icon-48x48.png",
+    "512": "img/icon-512x512.png"
+  },
+  "action": {
+    "default_title": "DZ",
+    "default_popup": "./settings.html"
+  },
+  "background": {
+    "service_worker": "js/background.js"
+  },
+  "content_scripts": [
+    {
+      "matches": ["*://binary.moscow.alfaintra.net/*/docs/*", "*://binary/*/docs/*", "*://binary.alfabank.ru/*/docs/*"],
+      "js": ["js/test.js"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://binary.moscow.alfaintra.net/*/docs/*!/index.html", "*://binary/*/docs/*!/index.html", "*://binary.alfabank.ru/*/docs/*!/index.html", "*://binary.alfabank.ru/*/docs/*!/*/*.html"],
+      "js": ["js/index.js"],
+      "css": ["css/1.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://binary.moscow.alfaintra.net/artifactory/snapshots/*/docs/", "*://binary/artifactory/snapshots/*/docs/", "*://binary.alfabank.ru/artifactory/snapshots/*/docs/"],
+      "js": ["js/snapshots_docs.js"],
+      "css": ["css/docs.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    },
+    {
+      "matches": ["*://binary.moscow.alfaintra.net/artifactory/releases/*/docs/", "*://binary/artifactory/releases/*/docs/", "*://binary.alfabank.ru/artifactory/releases/*/docs/"],
+      "js": ["js/releases_docs.js"],
+      "css": ["css/docs.css"],
+      "run_at": "document_idle",
+      "all_frames": true
+    }
+  ],
+  "options_ui": {
+    "page": "./settings.html",
+    "open_in_tab": false
+  },
+  "permissions": [
+    "storage", "tabs", "contextMenus"
+  ],
+  "web_accessible_resources": [{
+    "resources": ["marathon/smart_config/smart_config.html", "settings/settings.html", "img/*", "newyear/*"],
+    "matches": ["<all_urls>"]
+  }],
+  "content_security_policy": {
+    "extension_pages": "script-src 'self' 'wasm-unsafe-eval'; object-src 'self'"
+  }
+}

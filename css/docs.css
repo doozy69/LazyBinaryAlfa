@@ -1,0 +1,20 @@
+.a_full_url{
+    padding-left: 20px;
+}
+.release{
+    display: block;
+}
+.release a{
+    padding: 5px;
+    background: #bbb;
+    border-radius: 5px;
+    margin: 5px 0;
+    display: inline-block;
+    color: #fff;
+    font-weight: 700;
+    text-decoration: none;
+}
+.release a:hover{
+    color: #000;
+    text-decoration: underline;
+}
