@@ -32,8 +32,7 @@ onload = (event) => {
     //показать\скрыть меню
     document.addEventListener('keydown', function(event) {
       if (event.code == 'KeyQ' && event.repeat == false) {
-      let div = document.querySelector(".dz_menu")
-        div.style.display = (div.style.display == "none") ? "block" : "none";
+        openCloseMenu()
       }
     });
     //показать\скрыть не методы
@@ -160,7 +159,33 @@ function menu(){
                 }
             }
         })
-        document.querySelector("#content").append(div);
+
+
+        //Burger menu
+        let divBurger = document.createElement('div')
+        divBurger.className = "burger"
+
+        let divLeft = document.createElement('div')
+        divLeft.className = "left"
+        let divRight = document.createElement('div')
+        divRight.className = "right"
+
+
+        divBurger.append(divLeft, divRight)
+
+        divBurger.addEventListener('click', (e) => {
+            if (e.currentTarget.classList.contains("open")){
+                e.currentTarget.classList.remove("open")
+                openCloseMenu()
+            }else{
+                e.currentTarget.classList.add("open")
+                openCloseMenu()
+            }
+        })
+
+
+        //добавление всего в content
+        document.querySelector("#content").append(div, divBurger);
 }
 
 //скрытие левого меню
@@ -384,6 +409,10 @@ function images(){
     });
 }
 
+function openCloseMenu(){
+    let div = document.querySelector(".dz_menu")
+    div.style.display = (div.style.display == "none") ? "block" : "none";
+}
 
 //___________________________________НОВОГОДНЯЯ МОТНЯ
 function newyear(){

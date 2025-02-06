@@ -72,6 +72,111 @@ html{
     white-space: pre;
 }*/
 
+/*BURGER*/
+.burger{
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 60px;
+    height: 60px;
+    transition-duration: 0.5s;
+    
+    .left {
+      transition-duration: 0.5s;
+      position: absolute;
+      height: 4px;
+      width: 15px;
+      top: 30px;
+      background-color: #6b6b6b;
+      
+      &:before{
+        transition-duration: 0.5s;
+        position: absolute;
+        width: 15px;
+        height: 4px;
+        background-color: #6b6b6b;
+        content: "";
+        top: -10px;
+      }
+      
+      &:after{
+        transition-duration: 0.5s;
+        position: absolute;
+        width: 15px;
+        height: 4px;
+        background-color: #6b6b6b;
+        content: "";
+        top: 10px;
+      }
+      
+      &:hover{
+        cursor: pointer;
+      }
+    }
+    
+    .right {
+        transition-duration: 0.5s;
+        position: absolute;
+        height: 4px;
+        width: 15px;
+        top: 30px;
+        background-color: #6b6b6b;
+        left: 15px;
+      
+      &:before{
+        transition-duration: 0.5s;
+        position: absolute;
+        width: 15px;
+        height: 4px;
+        background-color: #6b6b6b;
+        content: "";
+        top: -10px;
+      }
+      
+      &:after{
+        transition-duration: 0.5s;
+        position: absolute;
+        width: 15px;
+        height: 4px;
+        background-color: #6b6b6b;
+        content: "";
+        top: 10px;
+      }
+    }
+    
+    &.open {
+      .left {
+        transition-duration: 0.5s;
+        background: transparent;
+        
+        &:before{
+          transform: rotateZ(45deg) scaleX(1.4) translate(2px, 2px);
+        }
+  
+        &:after{
+          transform: rotateZ(-45deg) scaleX(1.4) translate(2px, -2px);
+        }
+      }
+      
+      .right {
+        transition-duration: 0.5s;
+        background: transparent;  
+        
+        &:before{
+          transform: rotateZ(-45deg) scaleX(1.4) translate(-2px, 2px);
+        }
+  
+        &:after{
+          transform: rotateZ(45deg) scaleX(1.4) translate(-2px, -2px);
+        }
+      }
+    }
+    &:hover {
+      cursor: pointer;
+    }
+  }
+  /*BURGER END*/
+
 
 .get, .post, .put, .delete, .patch{
     color: #fff;
