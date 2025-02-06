@@ -33,6 +33,12 @@ onload = (event) => {
     document.addEventListener('keydown', function(event) {
       if (event.code == 'KeyQ' && event.repeat == false) {
         openCloseMenu()
+        let divBurger = document.getElementsByClassName("burger")[0]
+        if (divBurger.classList.contains("open")){
+            divBurger.classList.remove("open")
+        }else{
+            divBurger.classList.add("open")
+        }
       }
     });
     //показать\скрыть не методы
