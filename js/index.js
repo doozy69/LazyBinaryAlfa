@@ -135,20 +135,43 @@ function menu(){
             if (/^(post|get|put|delete|patch)/.test(sec.id)){//если это метод
                 
                 let code = menuLink.querySelector("code")
-                let codeText = code.textContent;
+                console.log(menuLink.textContent)
+                console.log(code)
+                //если нет в ссылуе элемента code (старая дока)
+                let codeText = "";
+                if (code){
+                    codeText = code.textContent;
+                }else{
+                    codeText = menuLink.textContent;
 
-                let type = cutStringAtFirstSpace(codeText); // Обрезаем строку до первого слова
+                    menuLink.textContent = cutStringAtFirstSpace(codeText)+" "; //тут остается только порядковый номер
+
+                    codeNew = document.createElement('code'); // создаем новый элемент, т.к. его не существует в оглавлении
+                    menuLink.appendChild(codeNew);
+
+                    code = menuLink.querySelector("code");
+                    codeText = subStringAtFirstSpace(codeText); // после первого пробела, т.к. в начале будет порядковый номер, убираем его
+                    code.after(subStringAtFirstSpace(subStringAtFirstSpace(codeText))) //два раза т.к. надо убрать еще и путь метода
+
+                    //обрезка текста вконце, остается только type и адресс 
+                    const index = codeText.indexOf('  ');
+                    if (index !== -1) {
+                        codeText = codeText.slice(0, index)
+                    }
+                }
+
+                let type = cutStringAtFirstSpace(codeText); // Обрезаем строку до первого слова, получаем тип метода
+
                 let span = document.createElement('span');
-
                 span.className = type.toLowerCase()
                 span.textContent = type
 
-                code.textContent = subStringAtFirstSpace(codeText)
-
-                code.before(span)
-
+                code.textContent = subStringAtFirstSpace(codeText) // после первого пробела
+                code.before(span) // вставить Span перед code
+                
                 li.appendChild(menuLink)
                 ul.appendChild(li)
+                
             }else{//если это не метод
                 if (!/^(user-stories|feature-toggle|описание-системных-параметров|требования-к-логированию|отчет-о-тестировании)/.test(sec.id)){
                     let code = menuLink.querySelector("code")
@@ -237,7 +260,7 @@ function showHideNotMethod(){
     }
 }
 
-//результат до первого пробела
+//результат до первого пробела, получаем тип метода
 function cutStringAtFirstSpace(str) {
     const index = str.indexOf(' ');
     if (index === -1) {
