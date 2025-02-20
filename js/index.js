@@ -135,8 +135,7 @@ function menu(){
             if (/^(post|get|put|delete|patch)/.test(sec.id)){//если это метод
                 
                 let code = menuLink.querySelector("code")
-                console.log(menuLink.textContent)
-                console.log(code)
+                
                 //если нет в ссылуе элемента code (старая дока)
                 let codeText = "";
                 if (code){
